@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Carousel</title>
+
+    <style>
+        body{
+            background-color: #34495e;
+        }
+
+        .carouselWrapper{
+            position: absolute;
+            margin: auto;
+            height: 500px;
+            width: 600px;
+            top:calc(50% - 250px);
+            left:calc(50% - 300px);
+            box-shadow: 10px 10px 10px rgb(29, 29, 29);
+            border:1px solid rgb(248, 246, 246);
+        }
+
+        .imageWrapper{
+            position: absolute;
+            width: 100%;
+            height: 400px;
+            text-align: center;
+        }
+
+        .navigationWrapper{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            padding-top: 40px;
+            text-align: center;
+            background-color:#fff;
+        }
+
+        .navigationDot{
+            display: inline-block;
+            position: relative;
+            height: 20px;
+            width: 20px;
+            margin-right: 30px;
+            border-radius: 50%;
+            background-color: #2ecc71;
+            cursor: pointer;
+        }
+
+        .navigationDot:hover{
+            background-color: #27ae60;
+        }
+
+        .navigationDot--active{
+            background-color: #9b59b6;
+        }
+
+        .navigationDot--active:hover{
+            background-color: #b873d3;
+        }
+
+        .displayImage{
+            position: relative;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .hiddenImage{
+          display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="carouselWrapper">
+        <div class="imageWrapper"></div>
+        <div class="navigationWrapper"></div>
+    </div> 
+
+    <script>
+      var activeImageNumber = 0;
+      var allImages;
+      var allDots;
+
+      initCarousel();
+
+      var carouselInterval = setInterval(onIntervalPassed, 2000);
+
+      
+      function initCarousel(){
+        var allFileNames = ['image1.jpg', 'image3.jpg', 'image4.webp', 'image1.jpg', 'image2.jpg'];
+        var imagesHtml = '';
+        var dotsHtml = '';
+
+        for(var i = 0; i < allFileNames.length; i++){
+          imagesHtml += '<img class="displayImage hiddenImage" src="images/' + allFileNames[i] + '"/>'
+          dotsHtml += '<div onclick="onDotClicked(' + i +')" class="navigationDot"></div>'
+        }
+
+        document.querySelector('.imageWrapper').innerHTML = imagesHtml;
+        document.querySelector('.navigationWrapper').innerHTML = dotsHtml;
+
+        allImages = document.querySelectorAll('.displayImage');
+        allDots = document.querySelectorAll('.navigationDot')
+        showImage(0);
+      }
+
+      
+      function onIntervalPassed(){
+        var nextImageNumber = activeImageNumber + 1;
+
+        if(nextImageNumber === allImages.length){
+          nextImageNumber = 0;
+        }
+
+        showImage(nextImageNumber);
+      }
+
+      
+      function showImage(newImageNumber){
+        allImages[activeImageNumber].classList.add('hiddenImage');
+        allImages[newImageNumber].classList.remove('hiddenImage');
+
+        allDots[activeImageNumber].classList.remove('navigationDot--active')
+        allDots[newImageNumber].classList.add('navigationDot--active')
+
+        activeImageNumber = newImageNumber;
+      }
+
+     
+      function onDotClicked(imageNumber){
+        showImage(imageNumber);
+
+        clearInterval(carouselInterval);
+        carouselInterval = setInterval(onIntervalPassed, 2000);
+      }
+    </script> 
+
+</body>
+</html>

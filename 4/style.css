@@ -1,0 +1,30 @@
+
+    h1{
+       color:orangered
+    }
+    #articleMainKeyWord{
+        font-size:40px;
+        color:gold;
+    }
+
+    .keyWord{
+        color:gold;
+    }
+
+    body{
+        background-color:darkslategray;
+    }
+
+    #kaplerTelescope{
+       height:250px;
+    }
+    figure{
+        text-align:center;
+    }
+
+    p{
+        color:white;
+        text-align:left;
+        line-height:20px;
+    }
+
