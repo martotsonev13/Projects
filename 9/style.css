@@ -1,0 +1,49 @@
+.breadcrumb {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.breadcrumb a {
+	margin-right: 60px;
+	margin-top: -100px;
+}
+
+.overview {
+	height: 90px;
+	background-color: orange;
+}
+
+body {
+	margin: 0 auto;
+	overflow: auto;
+}
+
+.articleTextContainer {
+	font-size: 20px;
+	width: 55%;
+	display: inline-block;
+}
+
+.mainArticle p {
+	text-align: left;
+}
+
+#SolarSystem {
+	height: 400px;
+	float: right;
+	margin-right: -400px;
+    margin-top: 100px
+    padding-left: 100px;
+   
+}
+
+li :hover {
+	color: orangered;
+}
+
+article {
+	padding-left: 50px;
+	padding-right: 500px;
+}
+
